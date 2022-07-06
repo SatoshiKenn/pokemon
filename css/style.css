@@ -1,0 +1,43 @@
+* {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pokedex {
+  max-width: 400px;
+  display: grid;
+}
+
+.pokemon-block {
+  display: flex;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.pokemon-block p {
+  margin-top: 45px;
+}
+
+.pokemonImg {
+  width: 125px
+}
+
+.pagination {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+ul {
+  display: flex;
+  flex-flow: row;
+  margin: 0 auto;
+}
+
+#prev, #next {
+  text-decoration: none;
+  list-style: none;
+  border-radius: 10px;
+  background-color: rgb(243, 241, 136);
+}
