@@ -5,8 +5,9 @@
 
 .pokedex {
   max-width: 70%;
-  max-height: 500px;
+  height: 500px;
   overflow-y: scroll;
+  border-radius: 10px;
 }
 
 .pokemon-block {
