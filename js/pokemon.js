@@ -8,6 +8,11 @@ function showPokemonGen(gen) {
     1: [1, 151],
     2: [152, 251],
     3: [252, 386],
+    4: [387, 493],
+    5: [494, 649],
+    6: [650, 721],
+    7: [722, 809],
+    8: [810, 905],
   };
 
   const pokemonGenDefault = [1, 151];
@@ -22,20 +27,20 @@ prev.addEventListener("click", () => {
     generationshow -= 1
     pokemonGeneration = showPokemonGen(generationshow)
     removeChildNodes(pokedexDiv);
-    drawPokemon()
+    fetchPokemons()
   }
 });
 
 next.addEventListener("click", () => {
-  if (generationshow < 4) {
+  if (generationshow < 9) {
     generationshow += 1;
     pokemonGeneration = showPokemonGen(generationshow);
     removeChildNodes(pokedexDiv);
-    drawPokemon()
+    fetchPokemons()
   }
 });
 
-const drawPokemon = async () => {
+const fetchPokemons = async () => {
   for (let i = pokemonGeneration[0]; i <= pokemonGeneration[1]; i++) {
     await getPokemon(i);
   }
@@ -64,6 +69,8 @@ const colors = {
   flying: "#CDCDCD",
   fighting: "#FF5D5D",
   normal: "#FFFFFF",
+  dark: "#4f4d4d",
+  ice: "#6fe7f2",
 };
 
 const main_types = Object.keys(colors);
@@ -108,4 +115,4 @@ function removeChildNodes(parent) {
   }
 }
 
-drawPokemon();
+fetchPokemons();
