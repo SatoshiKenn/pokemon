@@ -5,7 +5,9 @@
 
 .pokedex {
   max-width: 400px;
+  max-height: 600px;
   display: grid;
+  overflow-y: scroll;
 }
 
 .pokemon-block {
@@ -33,6 +35,7 @@ ul {
   display: flex;
   flex-flow: row;
   margin: 0 auto;
+  text-align: left;
 }
 
 #prev, #next {
@@ -40,4 +43,15 @@ ul {
   list-style: none;
   border-radius: 10px;
   background-color: rgb(243, 241, 136);
+}
+
+.genLink {
+  list-style: none;
+  text-decoration: none;
+}
+
+.generations {
+  list-style: none;
+  text-decoration: none;
+  margin-left: -28px;
 }
