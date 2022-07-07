@@ -1,38 +1,55 @@
 const pokedexDiv = document.querySelector(".pokedex");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
+let generationshow = 1;
 
-let offset = 0;
-let limit = 10;
+function showPokemonGen(gen) {
+  const pokemonGen = {
+    1: [1, 151],
+    2: [152, 251],
+    3: [252, 386],
+  };
+
+  const pokemonGenDefault = [1, 151];
+  const generation = pokemonGen[gen] || pokemonGenDefault;
+  return generation;
+}
+
+let pokemonGeneration = showPokemonGen(generationshow);
 
 prev.addEventListener("click", () => {
-  if (offset != 1) {
-    offset -= 10;
+  if (generationshow > 0){
+    generationshow -= 1
+    pokemonGeneration = showPokemonGen(generationshow)
     removeChildNodes(pokedexDiv);
-    fetchPokemons(offset, limit);
+    drawPokemon()
   }
 });
 
 next.addEventListener("click", () => {
-  offset += 10;
-  removeChildNodes(pokedexDiv);
-  fetchPokemons(offset, limit);
+  if (generationshow < 4) {
+    generationshow += 1;
+    pokemonGeneration = showPokemonGen(generationshow);
+    removeChildNodes(pokedexDiv);
+    drawPokemon()
+  }
 });
 
-const fetchPokemon = async (id) => {
+const drawPokemon = async () => {
+  for (let i = pokemonGeneration[0]; i <= pokemonGeneration[1]; i++) {
+    await getPokemon(i);
+  }
+};
+
+const getPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const rest = await fetch(url);
   const pokemon = await rest.json();
+  console.log(pokemon.id)
   createPokemon(pokemon);
 };
 
-function fetchPokemons(offset, limit) {
-  for (let i = offset; i < offset + limit; i++) {
-    fetchPokemon(i);
-  }
-}
-
-/*Pokemon's colors types*/
+/*Pokemon types*/
 const colors = {
   fire: "#FFA05D",
   grass: "#8FD594",
@@ -91,4 +108,4 @@ function removeChildNodes(parent) {
   }
 }
 
-fetchPokemons(offset, limit);
+drawPokemon();
