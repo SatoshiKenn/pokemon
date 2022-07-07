@@ -4,9 +4,8 @@
 }
 
 .pokedex {
-  max-width: 400px;
-  max-height: 600px;
-  display: grid;
+  max-width: 70%;
+  max-height: 300px;
   overflow-y: scroll;
 }
 
@@ -21,7 +20,7 @@
 }
 
 .pokemonImg {
-  width: 125px
+  width: 125px;
 }
 
 .pagination {
@@ -38,7 +37,8 @@ ul {
   text-align: left;
 }
 
-#prev, #next {
+#prev,
+#next {
   text-decoration: none;
   list-style: none;
   border-radius: 10px;
