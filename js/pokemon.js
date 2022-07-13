@@ -126,6 +126,7 @@ const onePokemon = async (id) => {
   const rest = await fetch(url);
   const pokemon = await rest.json();
   detailPokemon(pokemon)
+  window.scrollTo(0, document.body.scrollHeight);
 };
 
 
