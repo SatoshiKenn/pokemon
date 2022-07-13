@@ -115,9 +115,17 @@ const getPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const rest = await fetch(url);
   const pokemon = await rest.json();
-  console.log(pokemon.id);
+  console.log(pokemon);
   createPokemon(pokemon);
 };
+
+const onePokemon = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const rest = await fetch(url);
+  const pokemon = await rest.json();
+  detailPokemon(pokemon)
+};
+
 
 /*Pokemon types*/
 const colors = {
@@ -127,15 +135,18 @@ const colors = {
   water: "#7E97C0",
   ground: "#CAAC4D",
   rock: "#90642D",
-  poison: "#9D5B9B",
+  poison: "#803782",
   bug: "#EAFD71",
-  dragon: "#97b3e6",
-  psychic: "#FF96B5",
-  flying: "#CDCDCD",
+  dragon: "#705BD9",
+  psychic: "#E63E76",
+  flying: "#93A4F2",
   fighting: "#FF5D5D",
-  normal: "#FFFFFF",
-  dark: "#4f4d4d",
-  ice: "#6fe7f2",
+  normal: "#C2BDB2",
+  dark: "#523D2E",
+  ice: "#6DD3F5",
+  steel: "#8E8E9F",
+  fairy: "#EEA6EE",
+  ghost: "#4D4C9C",
 };
 
 const main_types = Object.keys(colors);
@@ -167,9 +178,17 @@ function createPokemon(pokemon) {
   pokemonName.textContent =
     pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
+  
+  const pokemonButton = document.createElement("button");
+  pokemonButton.textContent = "Information"
+  pokemonButton.addEventListener("click", () => {
+    onePokemon(pokemon.id);
+  })
+
   card.appendChild(pokemonNumber);
   card.appendChild(pokemonSpriteContainer);
   card.appendChild(pokemonName);
+  card.appendChild(pokemonButton);
 
   pokedexDiv.appendChild(card);
 }
@@ -181,3 +200,63 @@ function removeChildNodes(parent) {
 }
 
 fetchPokemons();
+
+//Pokemon's Details
+
+function detailPokemon(pokemon) {
+  const main = document.querySelector(".flex");
+  const detailCard = document.createElement("article");
+  detailCard.classList.add("card");
+
+  const detailCardBody = document.createElement("div");
+  detailCardBody.classList.add("card-body");
+
+  const poke_types = pokemon.types.map((type) => type.type.name);
+  const type = main_types.find((type) => poke_types.indexOf(type) > -1);
+  const color = colors[type];
+
+  detailCardBody.style.backgroundColor = color;
+
+  const detailImg = document.createElement("img");
+  detailImg.setAttribute(
+    "src",
+    pokemon.sprites.other["official-artwork"].front_default
+  );
+  detailImg.setAttribute("alt", `${pokemon.name}`);
+  detailImg.classList.add("card-body-img");
+
+  const pokemonName = document.createElement("h1");
+  pokemonName.classList.add("card-body-title");
+  pokemonName.textContent =
+    pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+  
+  const pokemonNumber = document.createElement("p");
+  pokemonNumber.classList.add("card-body-text");
+  pokemonNumber.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
+
+  const detailFooter = document.createElement("div");
+  detailFooter.classList.add("card-footer");
+
+  const pokemonAttack = document.createElement("div");
+  pokemonAttack.classList.add("card-footer-social");
+  pokemonAttack.textContent = `Attack: ${pokemon.stats[1].base_stat}`;
+
+  const pokemonDeffense = document.createElement("div");
+  pokemonDeffense.classList.add("card-footer-social");
+  pokemonDeffense.textContent = `Deffense: ${pokemon.stats[2].base_stat}`;
+
+  const pokemonSAttack = document.createElement("div");
+  pokemonSAttack.classList.add("card-footer-social");
+  pokemonSAttack.textContent = `Special Attack: ${pokemon.stats[3].base_stat}`;
+
+  detailCardBody.appendChild(detailImg);
+  detailCardBody.appendChild(pokemonName);
+  detailCardBody.appendChild(pokemonNumber);
+  detailFooter.appendChild(pokemonAttack);
+  detailFooter.appendChild(pokemonDeffense);
+  detailFooter.appendChild(pokemonSAttack);
+  detailCardBody.appendChild(detailFooter);
+
+  main.appendChild(detailCardBody);
+}
+
