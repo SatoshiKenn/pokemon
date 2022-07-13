@@ -120,6 +120,8 @@ const getPokemon = async (id) => {
 };
 
 const onePokemon = async (id) => {
+  const main = document.querySelector(".flex");
+  removeChildNodes(main);
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const rest = await fetch(url);
   const pokemon = await rest.json();
