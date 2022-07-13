@@ -46,6 +46,11 @@ ul {
   background-color: rgb(243, 241, 136);
 }
 
+.pokemonBtn {
+  text-align: center;
+  margin-top: 43px;
+}
+
 .genLink {
   list-style: none;
   text-decoration: none;

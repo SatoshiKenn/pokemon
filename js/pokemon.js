@@ -180,9 +180,10 @@ function createPokemon(pokemon) {
   pokemonName.textContent =
     pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
-  
+  const pokemonOptions = document.createElement("div");
   const pokemonButton = document.createElement("button");
-  pokemonButton.textContent = "Information"
+  pokemonButton.classList.add("pokemonBtn")
+  pokemonButton.textContent = "Info"
   pokemonButton.addEventListener("click", () => {
     onePokemon(pokemon.id);
   })
@@ -190,7 +191,8 @@ function createPokemon(pokemon) {
   card.appendChild(pokemonNumber);
   card.appendChild(pokemonSpriteContainer);
   card.appendChild(pokemonName);
-  card.appendChild(pokemonButton);
+  pokemonOptions.appendChild(pokemonButton);
+  card.appendChild(pokemonOptions);
 
   pokedexDiv.appendChild(card);
 }
