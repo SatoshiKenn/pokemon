@@ -111,14 +111,16 @@ ul {
 
 .card-footer {
   display: grid;
-  gap: 5px;
-  font-size: .9rem;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 5% 5% 10%;
+  font-size: 0.8rem;
   width: 95%;
+  margin: 0 auto;
 }
 
 #container {
-  grid-row: 7;
-  background-color: rgb(255,255,255,0.9);
+  grid-row: 4;
+  background-color: rgb(255, 255, 255, 0.9);
   border-radius: 10px;
 }
 
