@@ -125,10 +125,9 @@ const onePokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const rest = await fetch(url);
   const pokemon = await rest.json();
-  detailPokemon(pokemon)
+  detailPokemon(pokemon);
   window.scrollTo(0, document.body.scrollHeight);
 };
-
 
 /*Pokemon types*/
 const colors = {
@@ -183,16 +182,21 @@ function createPokemon(pokemon) {
 
   const pokemonOptions = document.createElement("div");
   const pokemonButton = document.createElement("button");
-  pokemonButton.classList.add("pokemonBtn")
-  pokemonButton.textContent = "Info"
+  pokemonButton.classList.add("pokemonBtn");
+  pokemonButton.textContent = "Info";
   pokemonButton.addEventListener("click", () => {
     onePokemon(pokemon.id);
-  })
+  });
+
+  const pokemonAdd = document.createElement("button");
+  pokemonAdd.classList.add("pokemonBtn");
+  pokemonAdd.textContent = "<3";
 
   card.appendChild(pokemonNumber);
   card.appendChild(pokemonSpriteContainer);
   card.appendChild(pokemonName);
   pokemonOptions.appendChild(pokemonButton);
+  pokemonOptions.appendChild(pokemonAdd);
   card.appendChild(pokemonOptions);
 
   pokedexDiv.appendChild(card);
@@ -234,13 +238,22 @@ function detailPokemon(pokemon) {
   pokemonName.classList.add("card-body-title");
   pokemonName.textContent =
     pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-  
+
   const pokemonNumber = document.createElement("p");
   pokemonNumber.classList.add("card-body-text");
   pokemonNumber.textContent = `#${pokemon.id.toString().padStart(3, 0)}`;
 
+  const detailInfo = document.createElement("p");
+  detailInfo.classList.add("card-body-text");
+  detailInfo.textContent = "Base Stats:";
+
   const detailFooter = document.createElement("div");
   detailFooter.classList.add("card-footer");
+  detailFooter.style.backgroundColor = "#FFFFF";
+
+  const pokemonHp = document.createElement("div");
+  pokemonHp.classList.add("card-footer-social");
+  pokemonHp.textContent = `HP: ${pokemon.stats[0].base_stat}`;
 
   const pokemonAttack = document.createElement("div");
   pokemonAttack.classList.add("card-footer-social");
@@ -254,14 +267,45 @@ function detailPokemon(pokemon) {
   pokemonSAttack.classList.add("card-footer-social");
   pokemonSAttack.textContent = `Special Attack: ${pokemon.stats[3].base_stat}`;
 
+  const pokemonSDeffense = document.createElement("div");
+  pokemonSDeffense.classList.add("card-footer-social");
+  pokemonSDeffense.textContent = `Special Deffense: ${pokemon.stats[4].base_stat}`;
+
+  const pokemonSpeed = document.createElement("div");
+  pokemonSpeed.classList.add("card-footer-social");
+  pokemonSpeed.textContent = `Speed: ${pokemon.stats[5].base_stat}`;
+
+  const chartContainer = document.createElement("canvas");
+  chartContainer.setAttribute("id", "container");
+  chartContainer.setAttribute("width", "400px");
+  chartContainer.setAttribute("height", "400px");
+
+  new Chart(chartContainer, {
+    type: "radar",
+    data: {
+      labels: ["HP", "Attack", "Deffense", "Speed", "Special Deffense", "Special Attack"],
+      datasets: [{
+        backgroundColor: color,
+        borderColor: '#FFFFF',
+        borderWidth: 2,
+        label: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+        data: [pokemon.stats[0].base_stat, pokemon.stats[1].base_stat, pokemon.stats[2].base_stat, pokemon.stats[5].base_stat, pokemon.stats[4].base_stat, pokemon.stats[3].base_stat]
+      }]
+    }
+  })
+
   detailCardBody.appendChild(detailImg);
   detailCardBody.appendChild(pokemonName);
   detailCardBody.appendChild(pokemonNumber);
+  detailCardBody.appendChild(detailInfo);
+  detailFooter.appendChild(pokemonHp);
   detailFooter.appendChild(pokemonAttack);
   detailFooter.appendChild(pokemonDeffense);
   detailFooter.appendChild(pokemonSAttack);
+  detailFooter.appendChild(pokemonSDeffense);
+  detailFooter.appendChild(pokemonSpeed);
+  detailFooter.appendChild(chartContainer);
   detailCardBody.appendChild(detailFooter);
 
   main.appendChild(detailCardBody);
 }
-

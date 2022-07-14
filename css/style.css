@@ -62,7 +62,6 @@ ul {
   margin-left: -28px;
 }
 
-
 /*Pokemon Details*/
 .card {
   background-color: white;
@@ -70,7 +69,7 @@ ul {
   border-radius: 16px;
   overflow: hidden;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .card-header {
@@ -79,17 +78,12 @@ ul {
 }
 
 .card-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
+  width: 95%;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   border-bottom: 1px solid rgba(153, 153, 153, 0.383);
+  border-radius: 10px;
 }
 
 .card-body-img {
@@ -113,14 +107,19 @@ ul {
   color: var(--dark-gray);
   font-size: 1.6rem;
   margin-top: 0;
-  margin-bottom: 2rem;
 }
 
 .card-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 10px;
+  display: grid;
+  gap: 5px;
+  font-size: .9rem;
+  width: 95%;
+}
+
+#container {
+  grid-row: 7;
+  background-color: rgb(255,255,255,0.9);
+  border-radius: 10px;
 }
 
 .card-footer-social {
