@@ -84,6 +84,7 @@ ul {
   align-items: center;
   border-bottom: 1px solid rgba(153, 153, 153, 0.383);
   border-radius: 10px;
+  height: 100%;
 }
 
 .card-body-img {
