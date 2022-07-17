@@ -32,60 +32,43 @@ function showPokemonGen(gen) {
 let pokemonGeneration = showPokemonGen(generationshow);
 
 gen1.addEventListener("click", () => {
-  generationshow = 1;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(1)
 });
 
 gen2.addEventListener("click", () => {
-  generationshow = 2;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(2)
 });
 
 gen3.addEventListener("click", () => {
-  generationshow = 3;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(3)
 });
 
 gen4.addEventListener("click", () => {
-  generationshow = 4;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(4)
 });
 
 gen5.addEventListener("click", () => {
-  generationshow = 5;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(5)
 });
 
 gen6.addEventListener("click", () => {
-  generationshow = 6;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(6)
 });
 
 gen7.addEventListener("click", () => {
-  generationshow = 7;
-  pokemonGeneration = showPokemonGen(generationshow);
-  removeChildNodes(pokedexDiv);
-  fetchPokemons();
+  changeGen(7);
 });
 
 gen8.addEventListener("click", () => {
-  generationshow = 8;
+  changeGen(8)
+});
+
+function changeGen(num){
+  generationshow = num;
   pokemonGeneration = showPokemonGen(generationshow);
   removeChildNodes(pokedexDiv);
   fetchPokemons();
-});
+}
 
 prev.addEventListener("click", () => {
   if (generationshow > 0) {
@@ -286,7 +269,7 @@ function detailPokemon(pokemon) {
       labels: ["HP", "Attack", "Deffense", "Speed", "Special Deffense", "Special Attack"],
       datasets: [{
         backgroundColor: color,
-        borderColor: '#FFFFF',
+        borderColor: 'rgb(128,128,128)',
         borderWidth: 2,
         label: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
         data: [pokemon.stats[0].base_stat, pokemon.stats[1].base_stat, pokemon.stats[2].base_stat, pokemon.stats[5].base_stat, pokemon.stats[4].base_stat, pokemon.stats[3].base_stat]
