@@ -219,6 +219,7 @@ function removeChildNodes(parent) {
 
 fetchPokemons();
 
+
 //Pokemon's Details
 
 function detailPokemon(pokemon) {
@@ -326,14 +327,15 @@ function detailPokemon(pokemon) {
     if (localStorage.getItem(`${pokemon.name}`) !== null){
       localStorage.removeItem(`${pokemon.name}`);
       console.log(`Pokemon deleted!`);
+      location.reload()
+      alert("Pokemon removed succesfully");
     } else {
-      alert("You don't have this pokemon in your favorite list")
+      alert(`You don't have ${[pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)]} in your favorite list`)
     }
   })
 
-  detailCardBody.appendChild(xButton);
-
   detailCardBody.appendChild(detailImg);
+  pokemonName.appendChild(xButton);
   detailCardBody.appendChild(pokemonName);
   detailCardBody.appendChild(pokemonNumber);
   detailCardBody.appendChild(detailInfo);
