@@ -26,9 +26,8 @@
 
 .pagination {
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
+  margin-left: 0px;
+  margin-bottom: 20px;
 }
 
 ul {
@@ -39,7 +38,8 @@ ul {
 }
 
 #prev,
-#next {
+#next,
+#favorite {
   text-decoration: none;
   list-style: none;
   border-radius: 10px;
@@ -63,6 +63,13 @@ ul {
 }
 
 /*Pokemon Details*/
+.xbtn{
+  z-index: 10;
+  position: absolute;
+  margin-left: 90%;
+  padding: 5px;
+}
+
 .card {
   background-color: white;
   width: 326px;
@@ -85,6 +92,7 @@ ul {
   border-bottom: 1px solid rgba(153, 153, 153, 0.383);
   border-radius: 10px;
   height: 100%;
+  margin-bottom: 10px;
 }
 
 .card-body-img {

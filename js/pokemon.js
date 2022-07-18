@@ -1,6 +1,7 @@
 const pokedexDiv = document.querySelector(".pokedex");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
+const favorite = document.getElementById("favorite");
 const gen1 = document.getElementById("gen1");
 const gen2 = document.getElementById("gen2");
 const gen3 = document.getElementById("gen3");
@@ -32,27 +33,27 @@ function showPokemonGen(gen) {
 let pokemonGeneration = showPokemonGen(generationshow);
 
 gen1.addEventListener("click", () => {
-  changeGen(1)
+  changeGen(1);
 });
 
 gen2.addEventListener("click", () => {
-  changeGen(2)
+  changeGen(2);
 });
 
 gen3.addEventListener("click", () => {
-  changeGen(3)
+  changeGen(3);
 });
 
 gen4.addEventListener("click", () => {
-  changeGen(4)
+  changeGen(4);
 });
 
 gen5.addEventListener("click", () => {
-  changeGen(5)
+  changeGen(5);
 });
 
 gen6.addEventListener("click", () => {
-  changeGen(6)
+  changeGen(6);
 });
 
 gen7.addEventListener("click", () => {
@@ -60,10 +61,10 @@ gen7.addEventListener("click", () => {
 });
 
 gen8.addEventListener("click", () => {
-  changeGen(8)
+  changeGen(8);
 });
 
-function changeGen(num){
+function changeGen(num) {
   generationshow = num;
   pokemonGeneration = showPokemonGen(generationshow);
   removeChildNodes(pokedexDiv);
@@ -87,6 +88,23 @@ next.addEventListener("click", () => {
     fetchPokemons();
   }
 });
+
+favorite.addEventListener("click", () =>{
+  const main = document.querySelector(".flex");
+  removeChildNodes(main);
+  for (let i = 0; i < localStorage.length; i++){
+    const key = localStorage.key(i)
+    const value = localStorage.getItem(key)
+    favoritePokemons(value);
+  }
+})
+
+const favoritePokemons = async (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const rest = await fetch(url);
+  const pokemon = await rest.json();
+  detailPokemon(pokemon);
+}
 
 const fetchPokemons = async () => {
   for (let i = pokemonGeneration[0]; i <= pokemonGeneration[1]; i++) {
@@ -174,6 +192,14 @@ function createPokemon(pokemon) {
   const pokemonAdd = document.createElement("button");
   pokemonAdd.classList.add("pokemonBtn");
   pokemonAdd.textContent = "<3";
+  pokemonAdd.addEventListener("click", () => {
+    if (localStorage.length >= 6) {
+      alert("You can only saved 6 pokemon in your favorite list");
+    } else {
+      localStorage.setItem(pokemon.name, pokemon.id);
+      console.log("Saved!");
+    }
+  });
 
   card.appendChild(pokemonNumber);
   card.appendChild(pokemonSpriteContainer);
@@ -266,16 +292,46 @@ function detailPokemon(pokemon) {
   new Chart(chartContainer, {
     type: "radar",
     data: {
-      labels: ["HP", "Attack", "Deffense", "Speed", "Special Deffense", "Special Attack"],
-      datasets: [{
-        backgroundColor: color,
-        borderColor: 'rgb(128,128,128)',
-        borderWidth: 2,
-        label: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
-        data: [pokemon.stats[0].base_stat, pokemon.stats[1].base_stat, pokemon.stats[2].base_stat, pokemon.stats[5].base_stat, pokemon.stats[4].base_stat, pokemon.stats[3].base_stat]
-      }]
+      labels: [
+        "HP",
+        "Attack",
+        "Deffense",
+        "Speed",
+        "Special Deffense",
+        "Special Attack",
+      ],
+      datasets: [
+        {
+          backgroundColor: color,
+          borderColor: "rgb(128,128,128)",
+          borderWidth: 2,
+          label: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+          data: [
+            pokemon.stats[0].base_stat,
+            pokemon.stats[1].base_stat,
+            pokemon.stats[2].base_stat,
+            pokemon.stats[5].base_stat,
+            pokemon.stats[4].base_stat,
+            pokemon.stats[3].base_stat,
+          ],
+        },
+      ],
+    },
+  });
+
+  const xButton = document.createElement("a");
+  xButton.classList.add("xbtn");
+  xButton.textContent = "</3"
+  xButton.addEventListener("click", () =>{
+    if (localStorage.getItem(`${pokemon.name}`) !== null){
+      localStorage.removeItem(`${pokemon.name}`);
+      console.log(`Pokemon deleted!`);
+    } else {
+      alert("You don't have this pokemon in your favorite list")
     }
   })
+
+  detailCardBody.appendChild(xButton);
 
   detailCardBody.appendChild(detailImg);
   detailCardBody.appendChild(pokemonName);
