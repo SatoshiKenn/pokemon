@@ -31,7 +31,12 @@
 .pagination {
   width: 90%;
   margin-left: 0px;
+  margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.pagination img{
+  width: 30px;
 }
 
 #prev,
@@ -39,8 +44,15 @@
 #favorite {
   text-decoration: none;
   list-style: none;
-  border-radius: 10px;
-  background-color: rgb(243, 241, 136);
+}
+
+#favorite a {
+  text-decoration: none;
+  
+}
+
+#favorite a:hover {
+  color: #ED5564;
 }
 
 .pokemonBtn {
