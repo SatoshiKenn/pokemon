@@ -94,7 +94,11 @@ favorite.addEventListener("click", () => {
   const main = document.querySelector(".flex");
   let windowSize = window.innerWidth;
   if (windowSize >= 640) {
-    main.style.display = "grid";
+    if (localStorage.length <= 1) {
+      main.style.display = "flex";
+    } else {
+      main.style.display = "grid";
+    }
   } else {
     main.style.display = "block";
   }
@@ -107,11 +111,12 @@ favorite.addEventListener("click", () => {
 });
 
 search.addEventListener("click", () => {
-  const pokemonSeacrh = document.getElementById("pkmnName").value.toLowerCase();
+  let pokemonSeacrh = document.getElementById("pkmnName");
   const main = document.querySelector(".flex");
   removeChildNodes(main);
   main.style.display = "flex";
-  onePokemon(pokemonSeacrh);
+  onePokemon(pokemonSeacrh.value.toLowerCase());
+  pokemonSeacrh.value = "";
 });
 
 const favoritePokemons = async (id) => {
