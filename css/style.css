@@ -55,6 +55,10 @@
   color: #ed5564;
 }
 
+#searchi {
+  margin-top: 20px;
+}
+
 .pokemonBtn {
   text-align: center;
   margin-top: 43px;
@@ -147,7 +151,7 @@ ul a:hover {
 .card-body-img {
   border: 5px solid white;
   border-radius: 50%;
-  width: 240px;
+  width: 150px;
   background-color: white;
 }
 

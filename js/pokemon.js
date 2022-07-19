@@ -2,6 +2,7 @@ const pokedexDiv = document.querySelector(".pokedex");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
 const favorite = document.getElementById("favorite");
+const search = document.getElementById("searchi");
 const gen1 = document.getElementById("gen1");
 const gen2 = document.getElementById("gen2");
 const gen3 = document.getElementById("gen3");
@@ -105,11 +106,20 @@ favorite.addEventListener("click", () => {
   }
 });
 
+search.addEventListener("click", () => {
+  const pokemonSeacrh = document.getElementById("pkmnName").value.toLowerCase();
+  const main = document.querySelector(".flex");
+  removeChildNodes(main);
+  main.style.display = "flex";
+  onePokemon(pokemonSeacrh);
+});
+
 const favoritePokemons = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const rest = await fetch(url);
   const pokemon = await rest.json();
   detailPokemon(pokemon);
+  window.scrollTo(0, document.body.scrollHeight);
 };
 
 const fetchPokemons = async () => {
@@ -205,7 +215,11 @@ function createPokemon(pokemon) {
       alert("You can only saved 6 pokemon in your favorite list");
     } else {
       localStorage.setItem(pokemon.name, pokemon.id);
-      alert(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} added to favorite list`);
+      alert(
+        `${
+          pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+        } added to favorite list`
+      );
       console.log("Saved!");
     }
   });
@@ -336,12 +350,17 @@ function detailPokemon(pokemon) {
       localStorage.removeItem(`${pokemon.name}`);
       console.log(`Pokemon deleted!`);
       location.reload();
-      alert(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} removed succesfully`);
-    } else {
       alert(
-        `You don't have ${[
-          pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
-        ]} in your favorite list`
+        `${
+          pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+        } removed succesfully`
+      );
+    } else {
+      localStorage.setItem(pokemon.name, pokemon.id);
+      alert(
+        `${
+          pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+        } added to favorite list`
       );
     }
   });

@@ -11,6 +11,10 @@
     max-width: 80%;
   }
 
+  .card-body-img {
+    width: 240px;
+  }
+
   .flex  {
     display: grid;
     grid-template-columns: 1fr 1fr;
