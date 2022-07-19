@@ -91,6 +91,7 @@ next.addEventListener("click", () => {
 
 favorite.addEventListener("click", () =>{
   const main = document.querySelector(".flex");
+  main.style.display = "grid";
   removeChildNodes(main);
   for (let i = 0; i < localStorage.length; i++){
     const key = localStorage.key(i)
@@ -186,6 +187,8 @@ function createPokemon(pokemon) {
   pokemonButton.classList.add("pokemonBtn");
   pokemonButton.textContent = "Info";
   pokemonButton.addEventListener("click", () => {
+    const main = document.querySelector(".flex");
+    main.style.display = "flex";
     onePokemon(pokemon.id);
   });
 
