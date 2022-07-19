@@ -89,23 +89,28 @@ next.addEventListener("click", () => {
   }
 });
 
-favorite.addEventListener("click", () =>{
+favorite.addEventListener("click", () => {
   const main = document.querySelector(".flex");
-  main.style.display = "grid";
+  let windowSize = window.innerWidth;
+  if (windowSize >= 640) {
+    main.style.display = "grid";
+  } else if (windowSize <= 639){
+    main.style.display = "block";
+  }
   removeChildNodes(main);
-  for (let i = 0; i < localStorage.length; i++){
-    const key = localStorage.key(i)
-    const value = localStorage.getItem(key)
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
     favoritePokemons(value);
   }
-})
+});
 
 const favoritePokemons = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const rest = await fetch(url);
   const pokemon = await rest.json();
   detailPokemon(pokemon);
-}
+};
 
 const fetchPokemons = async () => {
   for (let i = pokemonGeneration[0]; i <= pokemonGeneration[1]; i++) {
@@ -222,7 +227,6 @@ function removeChildNodes(parent) {
 
 fetchPokemons();
 
-
 //Pokemon's Details
 
 function detailPokemon(pokemon) {
@@ -325,17 +329,21 @@ function detailPokemon(pokemon) {
 
   const xButton = document.createElement("a");
   xButton.classList.add("xbtn");
-  xButton.textContent = "</3"
-  xButton.addEventListener("click", () =>{
-    if (localStorage.getItem(`${pokemon.name}`) !== null){
+  xButton.textContent = "</3";
+  xButton.addEventListener("click", () => {
+    if (localStorage.getItem(`${pokemon.name}`) !== null) {
       localStorage.removeItem(`${pokemon.name}`);
       console.log(`Pokemon deleted!`);
-      location.reload()
+      location.reload();
       alert("Pokemon removed succesfully");
     } else {
-      alert(`You don't have ${[pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)]} in your favorite list`)
+      alert(
+        `You don't have ${[
+          pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+        ]} in your favorite list`
+      );
     }
-  })
+  });
 
   detailCardBody.appendChild(detailImg);
   pokemonName.appendChild(xButton);
