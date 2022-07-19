@@ -94,7 +94,7 @@ favorite.addEventListener("click", () => {
   let windowSize = window.innerWidth;
   if (windowSize >= 640) {
     main.style.display = "grid";
-  } else if (windowSize <= 639){
+  } else {
     main.style.display = "block";
   }
   removeChildNodes(main);
@@ -205,6 +205,7 @@ function createPokemon(pokemon) {
       alert("You can only saved 6 pokemon in your favorite list");
     } else {
       localStorage.setItem(pokemon.name, pokemon.id);
+      alert(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} added to favorite list`);
       console.log("Saved!");
     }
   });

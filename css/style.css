@@ -10,7 +10,7 @@
   border-radius: 10px;
 }
 
-.pokedexContainer{
+.pokedexContainer {
   margin-top: 10px;
 }
 
@@ -25,17 +25,18 @@
 }
 
 .pokemonImg {
-  width: 125px;
+  width: 90px;
 }
 
 .pagination {
   width: 90%;
-  margin-left: 0px;
+  text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
-.pagination img{
+.pagination img {
   width: 30px;
 }
 
@@ -48,11 +49,10 @@
 
 #favorite a {
   text-decoration: none;
-  
 }
 
 #favorite a:hover {
-  color: #ED5564;
+  color: #ed5564;
 }
 
 .pokemonBtn {
@@ -62,7 +62,7 @@
 
 /*HEADER*/
 header {
-  background-color: #ED5564;
+  background-color: #ed5564;
   padding: 5px 0;
   max-width: 100%;
   margin: 0 auto;
@@ -70,7 +70,7 @@ header {
 }
 
 .title {
-  color: #1D1C1C;
+  color: #1d1c1c;
 }
 
 .generations {
@@ -90,11 +90,11 @@ ul {
 }
 
 ul a {
-  color: #1D1C1C;
+  color: #1d1c1c;
 }
 
 ul a:hover {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 /*Pokemon Details*/
@@ -106,16 +106,16 @@ ul a:hover {
   padding: 25px;
 }
 
-.xbtn img{
+.xbtn img {
   width: 25px;
 }
 
-.pokemonBtn{
+.pokemonBtn {
   background: none;
   border: none;
 }
 
-.pokemonBtn img{
+.pokemonBtn img {
   width: 25px;
 }
 
@@ -192,14 +192,12 @@ ul a:hover {
   letter-spacing: 1px;
 }
 
-
-
 /*FOOTER*/
 footer {
-  color: #1D1C1C;
+  color: #1d1c1c;
   font-size: 0.6rem;
   font-family: "Lora", serif;
-  background-color: #ED5564;
+  background-color: #ed5564;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -209,7 +207,7 @@ footer {
 }
 
 #fpart2 {
-  color: #1D1C1C;
+  color: #1d1c1c;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -218,9 +216,25 @@ footer {
 }
 
 #fpart2 a {
-  color: #1D1C1C;
+  color: #1d1c1c;
 }
 
 #fpart2 a:hover {
-  color: #FFFFFF;
+  color: #ffffff;
+}
+
+/*SCROLLBAR*/
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ed5564;
+  border: 3px solid transparent;
+  border-radius: 5px;
+  background-clip: content-box;
 }
