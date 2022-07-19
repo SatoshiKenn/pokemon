@@ -6,6 +6,11 @@
   body {
     max-width: 1000px;
   }
+
+  .pokedex {
+    max-width: 80%;
+  }
+
   .flex  {
     display: grid;
     grid-template-columns: 1fr 1fr;
