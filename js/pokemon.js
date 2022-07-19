@@ -190,7 +190,7 @@ function createPokemon(pokemon) {
   const pokemonOptions = document.createElement("div");
   const pokemonButton = document.createElement("button");
   pokemonButton.classList.add("pokemonBtn");
-  pokemonButton.textContent = "Info";
+  pokemonButton.innerHTML = `<img src="images/info.png" alt="more information icon">`;
   pokemonButton.addEventListener("click", () => {
     const main = document.querySelector(".flex");
     main.style.display = "flex";
@@ -199,7 +199,7 @@ function createPokemon(pokemon) {
 
   const pokemonAdd = document.createElement("button");
   pokemonAdd.classList.add("pokemonBtn");
-  pokemonAdd.textContent = "<3";
+  pokemonAdd.innerHTML = `<img src="images/heart.png" alt="favorite icon">`;
   pokemonAdd.addEventListener("click", () => {
     if (localStorage.length >= 6) {
       alert("You can only saved 6 pokemon in your favorite list");
@@ -329,13 +329,13 @@ function detailPokemon(pokemon) {
 
   const xButton = document.createElement("a");
   xButton.classList.add("xbtn");
-  xButton.textContent = "</3";
+  xButton.innerHTML = `<img src="images/heart.png" alt="favorite icon">`;
   xButton.addEventListener("click", () => {
     if (localStorage.getItem(`${pokemon.name}`) !== null) {
       localStorage.removeItem(`${pokemon.name}`);
       console.log(`Pokemon deleted!`);
       location.reload();
-      alert("Pokemon removed succesfully");
+      alert(`${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} removed succesfully`);
     } else {
       alert(
         `You don't have ${[

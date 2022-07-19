@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="images/pokeball.png" />
     <script defer src="js/pokemon.js"></script>
+    <script defer src="js/footer.js"></script>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/medium.css" />
     <link rel="stylesheet" href="css/large.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Pokedex</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/chart.js"
+    ></script>
+    <title>Pokédex</title>
   </head>
 
   <body>
-    <h1 class="title">Pokedex</h1>
     <header>
+      <h1 class="title">Pokédex</h1>
       <nav>
         <ul class="generations">
           <li id="gen1"><a class="genLink" href="#">Gen 1</a></li>
@@ -44,6 +49,17 @@
         </li>
       </ul>
     </nav>
-    <main class="flex"><div class="favoritepkmn"></div></main>
+    <main class="flex"></main>
+    <footer>
+      <div id="fpart2">
+        <div id="last">
+          <p id="devinfo">test</p>
+          <p>
+            Pokemon Data powered by
+            <a href="https://pokeapi.co/" target="_blank">Poké API</a>
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
